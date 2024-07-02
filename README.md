@@ -41,6 +41,9 @@ NEXT_IMAGE_DOMAIN=dev.next-drupal.org
 npm run preview
 ```
 
-4. visit the about us url
+# visit the about us url
+
+```
    <domain>/about-us
    example: http://localhost:3000/about-us
+```
