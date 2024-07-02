@@ -1,0 +1,48 @@
+uuid: c19ba12c-ff0b-4bc5-a581-6048c9c6bd1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.pillar.body
+    - field.field.node.pillar.field_animation
+    - node.type.pillar
+  module:
+    - svg_image_field
+    - text
+    - user
+id: node.pillar.default
+targetEntityType: node
+bundle: pillar
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_animation:
+    type: svg_image_field_formatter
+    label: above
+    settings:
+      inline: false
+      apply_dimensions: true
+      width: 25
+      height: 25
+      enable_alt: true
+      enable_title: true
+      link: ''
+      force_fill: false
+      sanitize: true
+      sanitize_remote: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

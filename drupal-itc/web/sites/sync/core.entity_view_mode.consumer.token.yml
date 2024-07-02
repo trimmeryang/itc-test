@@ -1,0 +1,11 @@
+uuid: b53d57ae-71ef-42de-a64e-24d4f98feb4a
+langcode: en
+status: true
+dependencies:
+  module:
+    - consumers
+id: consumer.token
+label: Token
+description: ''
+targetEntityType: consumer
+cache: true

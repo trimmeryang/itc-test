@@ -1,0 +1,29 @@
+uuid: d9670447-8585-4184-ad10-fa0ba1788eb3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_core_values_items
+    - node.type.about_us
+    - node.type.core_values
+id: node.about_us.field_core_values_items
+field_name: field_core_values_items
+entity_type: node
+bundle: about_us
+label: 'Core Values Items'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      core_values: core_values
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

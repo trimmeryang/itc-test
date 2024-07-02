@@ -1,0 +1,29 @@
+uuid: 584c3b91-7fec-45dc-b3ba-a7f5fcbc38cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_leadership
+    - node.type.about_us
+    - node.type.leadership
+id: node.about_us.field_leadership
+field_name: field_leadership
+entity_type: node
+bundle: about_us
+label: leadership
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      leadership: leadership
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

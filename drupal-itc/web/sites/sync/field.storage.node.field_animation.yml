@@ -1,0 +1,28 @@
+uuid: d02a5366-8b1b-446b-bdaf-2e9d098f674b
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+    - svg_image_field
+id: node.field_animation
+field_name: field_animation
+entity_type: node
+type: svg_image_field
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+module: svg_image_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

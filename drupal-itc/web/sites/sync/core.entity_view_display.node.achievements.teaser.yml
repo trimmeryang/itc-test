@@ -1,0 +1,37 @@
+uuid: 80df4700-cdbb-4dc9-96fb-e0ea3d2404b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.achievements.body
+    - field.field.node.achievements.field_award_image
+    - field.field.node.achievements.field_image_position
+    - field.field.node.achievements.field_subtitle
+    - node.type.achievements
+  module:
+    - text
+    - user
+id: node.achievements.teaser
+targetEntityType: node
+bundle: achievements
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_award_image: true
+  field_image_position: true
+  field_subtitle: true
+  langcode: true

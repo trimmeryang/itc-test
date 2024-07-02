@@ -1,0 +1,16 @@
+uuid: f8c803d2-8f84-41fc-830d-5b89f103eb49
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.achievements
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.achievements
+target_entity_type_id: node
+target_bundle: achievements
+default_langcode: site_default
+language_alterable: false
