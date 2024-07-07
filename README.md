@@ -1,49 +1,21 @@
-# download the code
+# use docker composer
 
-# deploy the backend service
-
-1. install the drupal and nginx env
-2. add following line to drupal-itc/web/sites/default/settings.php
+1. run the following command
 
 ```
-$settings['config_sync_directory'] = 'sites/sync';
+docker-compose up
 ```
 
-3. update the drupal config
+2. open the browser and visit the following url
+   en page: http://localhost:30000/about-us
+   zh page: http://localhost:30000/zh/about-us
 
-```
-composer install
-drush config:import
-drush cache:rebuild
-```
+   you can open http://localhost:30001 to visit the drupal.
+   The default admin user and password is: `admin` `KWh65tiuk4wHWrq`
 
-# deploy frontend
+   you can change port in the `.env` file
+   or you can change the password with the following command
 
-1. go to frontend folder
-
-```
-cd next-itc
-
-```
-
-2. copy file .env.example to .env.local
-3. change the params `NEXT_PUBLIC_DRUPAL_BASE_URL` and `NEXT_IMAGE_DOMAIN`to the real domain and base url
-
-```
-NEXT_PUBLIC_DRUPAL_BASE_URL=https://dev.next-drupal.org
-
-NEXT_IMAGE_DOMAIN=dev.next-drupal.org
-```
-
-3. run the command to deploy
-
-```
-npm run preview
-```
-
-# visit the about us url
-
-```
-   <domain>/about-us
-   example: http://localhost:3000/about-us
-```
+   ```
+   docker-compose exec drupal sh -c "./vendor/bin/drush user:password admin newpassword"
+   ```

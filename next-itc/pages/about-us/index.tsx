@@ -9,7 +9,7 @@ import { describe } from "node:test";
 import Layout from "./layout";
 import styles from "./styles.module.css";
 import Image from "next/image";
-import { absoluteUrl } from "lib/utils";
+import { absoluteUrl, absoluteImageUrl } from "lib/utils";
 
 const Page = ({ data }) => (
   <Layout meta={data.meta}>
@@ -30,17 +30,17 @@ const Page = ({ data }) => (
       </section>
 
       <section className={styles["about-us_pillars"]}>
-        <h1>{data.pillars.title}</h1>
+        <h1>{data.pillars?.title}</h1>
         <div
           className={styles["about-us_head__description"]}
-          dangerouslySetInnerHTML={{ __html: data.pillars.description }}
+          dangerouslySetInnerHTML={{ __html: data.pillars?.description }}
         />
         <div className={styles["about-us_pillars__list"]}>
-          {data.pillars.items.map((item) => (
+          {data.pillars?.items.map((item) => (
             <div className={styles["about-us_pillar"]} key="item.title">
               <div className={styles["about-us_pillar__logo"]}>
                 <Image
-                  src={absoluteUrl(item.imageUrl)}
+                  src={absoluteImageUrl(item.imageUrl)}
                   alt={item.imageAlt}
                   width={200} // Optional: Set width
                   height={150} // Optional: Set height
@@ -55,16 +55,16 @@ const Page = ({ data }) => (
         <div className={styles["about-us_pillars__cta"]}>
           <a
             className={styles["buttons_darkButton"]}
-            href={data.pillars.button.uri}
+            href={data.pillars?.button?.uri}
           >
-            {data.pillars.button.title}
+            {data.pillars?.button?.title}
           </a>
         </div>
       </section>
 
       <section className={styles["about-us_achievement__section"]}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {data.achievements.map((item) => (
+          {data.achievements?.map((item) => (
             <div
               key="item.title"
               className={`${styles["about-us_achievement__item"]} flex flex-col items-center 
@@ -92,14 +92,14 @@ const Page = ({ data }) => (
 
       <section className={styles["about-us_core-values"]}>
         <h1 className={styles["about-us_core-values__headtitle"]}>
-          {data.coreValues.title}
+          {data.coreValues?.title}
         </h1>
         <p
           className="text-center whitespace-pre-line"
-          dangerouslySetInnerHTML={{ __html: data.coreValues.description }}
+          dangerouslySetInnerHTML={{ __html: data.coreValues?.description }}
         ></p>
         <div className={styles["about-us_core-values__values"]}>
-          {data.coreValues.items.map((item) => (
+          {data.coreValues?.items.map((item) => (
             <div className={styles["about-us_core-value"]} key="item.title">
               <span className={styles["about-us_core-value__logo"]}>
                 <span>
@@ -132,7 +132,7 @@ const Page = ({ data }) => (
   </Layout>
 );
 
-function formatData(res: any): object {
+export function formatData(res: any): object {
   const { data, included } = res;
   const currentData = data?.[0] || {};
 
@@ -227,12 +227,17 @@ function formatData(res: any): object {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(
-    "http://itc.local/jsonapi/node/about_us?include=field_achievements.field_award_image,field_core_values_items.field_logo,field_leadership.field_picture,field_pillars_items.field_animation&fields[file--file]=uri"
-  );
-  const data = await res.json();
+  const url =
+    "/jsonapi/node/about_us?include=field_achievements.field_award_image,field_core_values_items.field_logo,field_leadership.field_picture,field_pillars_items.field_animation&fields[file--file]=uri";
 
-  return { props: { data: formatData(data) } };
+  try {
+    const res = await fetch(absoluteUrl(url));
+    const data = await res.json();
+
+    return { props: { data: formatData(data) } };
+  } catch (error) {}
+
+  return { props: { data: {} } };
 }
 
 export default Page;
